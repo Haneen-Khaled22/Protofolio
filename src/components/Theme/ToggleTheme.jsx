@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { cn } from '../../lib/utils';
 
 function ToggleTheme() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(()=>{
         const savedTheme = localStorage.getItem('theme');
