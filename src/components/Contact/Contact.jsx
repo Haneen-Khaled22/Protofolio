@@ -12,24 +12,39 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    setIsSubmitting(true);
-
-    setTimeout(() => {
+  emailjs.sendForm(
+    "service_i6c2j19",
+    "template_30mtklh",
+    e.target,
+    "wFXQobvj6thkg0gkx"
+  ).then(
+    (result) => {
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
       setIsSubmitting(false);
-    }, 1500);
-  };
+    },
+    (error) => {
+      toast({
+        title: "Error!",
+        description: "Something went wrong. Try again later.",
+      });
+      setIsSubmitting(false);
+    }
+  );
+};
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -131,7 +146,7 @@ export const ContactSection = () => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="From Name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="Haneen Khaled..."
@@ -149,7 +164,7 @@ export const ContactSection = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  name="Reply To"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="haneenk385@gmail.com"

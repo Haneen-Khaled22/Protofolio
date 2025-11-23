@@ -1,31 +1,57 @@
 import React, { useState } from 'react'
 import { cn } from './../../lib/utils';
+import { 
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiSupabase,
+  SiGit,
+  SiGithub,
+  SiFigma,
+  SiBootstrap,
+  SiPostman,
+
+} from "react-icons/si";
+
+import mui from '../../assets/mui icon.png'
 
 function Skills() {
     const [activeCategory,setActiveCategory] = useState("all");
 
-   
-    const skills = [
+ const skills = [
   // Frontend
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 75, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  { name: "Next.js", level: 70, category: "frontend" },
+  { name: "HTML", icon: SiHtml5, color: "#E44D26", category: "frontend" },
+  { name: "CSS", icon: SiCss3, color: "#264DE4", category: "frontend" },
+  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", category: "frontend" },
+  { name: "React", icon: SiReact, color: "#61DAFB", category: "frontend" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6", category: "frontend" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8", category: "ui" },
+   { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3", category: "ui" },
+   { name: "MUI", icon: null, color: "#007FFF", category: "ui" },
+   
+  { name: "Postman", icon: SiPostman, color: "#FF6C37", category: "tools" },
+
+   
+ 
+  { name: "Next.js", icon: SiNextdotjs, color: "#000000", category: "frontend" },
+  
 
   // Backend
-  { name: "Supabase", level: 75, category: "backend" },
- 
+  { name: "Supabase", icon: SiSupabase, color: "#3ECF8E", category: "backend" },
 
   // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
- 
-  { name: "Figma", level: 90, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
+  { name: "Git", icon: SiGit, color: "#F05032", category: "tools" },
+  { name: "GitHub", icon: SiGithub, color: "#181717", category: "tools" },
+  { name: "Figma", icon: SiFigma, color: "#F24E1E", category: "tools" },
+//{ name: "VS Code", icon: SiVisualStudioCode, color: "#007ACC", category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+
+const categories = ["all", "frontend", "backend", "tools","ui"];
 
  const filteredSkills = skills.filter((skill)=> skill.category === activeCategory || activeCategory === "all");
     return (
@@ -49,31 +75,29 @@ const categories = ["all", "frontend", "backend", "tools"];
 
             </div>
            
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-                {filteredSkills.map((skill,key)=>
-                <div key={key} className='bg-card rounded-lg shadow-xs p-3 card-hover'>
-                    <div className='text-left mb-3'>
-                        <h3 className='text-xl font-semibold mb-4'> 
-                            {skill.name}
-                        </h3>
-                    </div>
-                    <div className='w-full bg-secondary/50 h-2 rounded-full overflow-hidden'>
-                    <div className='w-full bg-primary h-2 rounded-full originate-left animate-[grow-1.5s-ease-out]' style={{width: `${skill.level}%`}}
-                    
-                    />
+   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+  {filteredSkills.map((skill, key) => {
+  return (
+    <div
+      key={key}
+      className="flex flex-col items-center p-4 bg-card rounded-xl border shadow-sm hover:shadow-md transition-all"
+    >
+      {skill.name === "MUI" ? (
+        <img src={mui} alt="MUI" className="w-12 h-12 mb-2" />
+      ) : (
+        <skill.icon className="w-10 h-10 mb-2" style={{ color: skill.color }} />
+      )}
+      <p className="font-medium">{skill.name}</p>
+    </div>
+  );
+})}
 
-                    </div>
-                    <div className='text-right mb-1'>
-                        <span className='text-sm font-medium'>{skill.level}%</span>
-
-                    </div>
+</div>
 
 
-                </div>
 
-                )}
 
-            </div>
+
 
 
         </div>
