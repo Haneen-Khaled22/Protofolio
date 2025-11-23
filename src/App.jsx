@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './pages/Layout/Layout'
 import Home from './pages/Home/Home'
 import NotFound from './pages/NotFound/NotFound'
+import { Toaster } from "@/components/ui/toaster";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   return (
     <>
    <RouterProvider router={router}></RouterProvider>
+   <Toaster/>
      
     </>
   )

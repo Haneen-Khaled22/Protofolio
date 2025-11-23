@@ -5,6 +5,10 @@ import { Navbar } from '../NavBar/NavBar'
 import { HeroSection } from '../../components/HeroSection/HeroSection'
 import { AboutSection } from '../../components/AboutMe/AboutMe'
 import Skills from '../../components/Skills/Skills'
+import { Projects } from '../../components/Projects/Projects'
+import { ContactSection } from '../../components/Contact/Contact'
+import { Footer } from '../../components/Footer/Footer'
+
 
 function Home() {
     return (
@@ -15,6 +19,9 @@ function Home() {
             <HeroSection/>
             <AboutSection/>
             <Skills/>
+            <Projects/>
+            <ContactSection/>
+            <Footer/>
 
         </div>
     )
